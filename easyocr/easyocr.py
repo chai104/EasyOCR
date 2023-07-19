@@ -68,7 +68,7 @@ class Reader(object):
         if gpu is False:
             self.device = 'cpu'
             if verbose:
-                LOGGER.warning('Using CPU. Note: This module is much faster with a GPU.')
+                LOGGER.warning('Using CPU. Note: This module is much faster with a GPU. PyCharm')
         elif gpu is True:
             if torch.cuda.is_available():
                 self.device = 'cuda'
@@ -385,6 +385,7 @@ class Reader(object):
                               ignore_char, decoder, beamWidth, batch_size, contrast_ths, adjust_contrast, filter_ths,\
                               workers, self.device)
                 result += result0
+                #result += '\n'
             for bbox in free_list:
                 h_list = []
                 f_list = [bbox]
