@@ -333,6 +333,35 @@ class Reader(object):
                                     bbox_min_size = bbox_min_size, 
                                     max_candidates = max_candidates,
                                     )
+        #chaidebug
+        cv2.imwrite("debug/detect_original_image.jpg",img)
+        newImage = img.copy()
+        isClosed = True
+        # RED color in BGR
+        color = (0, 0, 255)
+        # Line thickness of 2 px
+        countimage = 0
+        thickness = 4
+        for text_boxs in text_box_list:
+            for  text_box2  in text_boxs:
+                countimage+=1
+                text_box2 = text_box2.reshape((4, 2))
+                cv2.polylines(newImage, [text_box2], isClosed, (0, 255, 0), thickness)
+                text_box2 = text_box2.transpose().reshape((-1, 1, 4))
+                xmax = text_box2[0].max()
+                xmin = text_box2[0].min()
+                ymax = text_box2[1].max()
+                ymin = text_box2[1].min()
+                start_point = (xmin, ymin)
+                end_point = (xmax, ymax)
+                cv2.rectangle(newImage,start_point,end_point, (255, 0, 0), thickness)
+                tempimg = newImage[ymin:ymax,xmin:xmax]
+                cv2.imwrite( "debug/" + str(countimage) + ".jpg", tempimg)
+        #pts = np.array([[214, 123], [568, 127], [567, 177], [213, 172]], np.int32)
+        #pts = pts.reshape((-1, 1, 2))
+        #cv2.polylines(newImage, [pts], isClosed, color, thickness)
+        cv2.imwrite("debug/detect_with_block_image.jpg", newImage)
+        # chaidebug end
 
         horizontal_list_agg, free_list_agg = [], []
         for text_box in text_box_list:

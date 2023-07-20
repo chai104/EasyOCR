@@ -6,6 +6,6 @@ GPU = False
 
 #reader1 = easyocr.Reader(['en','th'],gpu=False,detect_network="dbnet18")
 reader1 = easyocr.Reader(['en','th'],gpu=False)
-result1 = reader1.readtext('../idcard1.jpg')
+result1 = reader1.readtext('idcard1.jpg')
 print (*result1,sep="\n")
 #print('Hello, world!')
