@@ -10,3 +10,6 @@ PyYAML
 Shapely
 pyclipper
 ninja
+pandas
+natsort
+nltk

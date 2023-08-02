@@ -346,20 +346,17 @@ class Reader(object):
             for  text_box2  in text_boxs:
                 countimage+=1
                 text_box2 = text_box2.reshape((4, 2))
-                cv2.polylines(newImage, [text_box2], isClosed, (0, 255, 0), thickness)
+                #cv2.polylines(newImage, [text_box2], isClosed, (0, 255, 0), thickness)
                 text_box2 = text_box2.transpose().reshape((-1, 1, 4))
                 xmax = text_box2[0].max()
                 xmin = text_box2[0].min()
                 ymax = text_box2[1].max()
                 ymin = text_box2[1].min()
-                start_point = (xmin, ymin)
-                end_point = (xmax, ymax)
-                cv2.rectangle(newImage,start_point,end_point, (255, 0, 0), thickness)
+                #start_point = (xmin, ymin)
+                #end_point = (xmax, ymax)
+                #cv2.rectangle(newImage,start_point,end_point, (255, 0, 0), thickness)
                 tempimg = newImage[ymin:ymax,xmin:xmax]
-                cv2.imwrite( "debug/" + str(countimage) + ".jpg", tempimg)
-        #pts = np.array([[214, 123], [568, 127], [567, 177], [213, 172]], np.int32)
-        #pts = pts.reshape((-1, 1, 2))
-        #cv2.polylines(newImage, [pts], isClosed, color, thickness)
+                cv2.imwrite( "debug/image1/" + str(countimage) + ".jpg", tempimg)
         cv2.imwrite("debug/detect_with_block_image.jpg", newImage)
         # chaidebug end
 
