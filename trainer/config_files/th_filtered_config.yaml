@@ -1,6 +1,6 @@
 number: '0123456789'
 symbol: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ €"
-lang_char: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZกขคฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฤเแโใไะาุูิีืึั่้๊๋็์ำํฺฯๆ๑๒๓๔๕๖๗๘๙ฦ'
+lang_char: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZกขคฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฤเแโใไะาุูิีืึั่้๊๋็์ำํฺฯๆ๑๒๓๔๕๖๗๘๙ฦ๐.'
 experiment_name: 'th_filtered'
 train_data: 'all_data'
 valid_data: 'all_data/th_val'
@@ -9,7 +9,7 @@ workers: 10
 batch_size: 32 #32
 num_iter: 10000
 valInterval: 4
-saved_model: '' #'saved_models/th_filtered/thai_original.pth'
+saved_model: 'saved_models/th_filtered/thai_original.pth' #'saved_models/th_filtered/thai_original.pth'
 FT: False
 optim: False # default is Adadelta
 lr: 1.
@@ -32,7 +32,7 @@ contrast_adjust: 0.0
 data_filtering_off: False
 # Model Architecture
 Transformation: 'None'
-FeatureExtraction: 'VGG'
+FeatureExtraction: 'ResNet'
 SequenceModeling: 'BiLSTM'
 Prediction: 'CTC'
 num_fiducial: 20

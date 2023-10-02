@@ -6,7 +6,7 @@ import yaml
 from train import train
 from utils import AttrDict
 import pandas as pd
-cudnn.benchmark = True
+cudnn.benchmark = False
 cudnn.deterministic = False
 def get_config(file_path):
     with open(file_path, 'r', encoding="utf8") as stream:
