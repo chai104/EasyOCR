@@ -7,7 +7,7 @@ valid_data: 'all_data/th_val'
 manualSeed: 1111
 workers: 10
 batch_size: 32 #32
-num_iter: 10000
+num_iter: 100
 valInterval: 4
 saved_model: 'saved_models/th_filtered/thai_original.pth' #'saved_models/th_filtered/thai_original.pth'
 FT: False
