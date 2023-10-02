@@ -120,20 +120,14 @@ def hierarchical_dataset(root, opt, select_data='/'):
     dataset_log = f'dataset_root:    {root}\t dataset: {select_data[0]}'
     print(dataset_log)
     dataset_log += '\n'
-    for dirpath, dirnames, filenames in os.walk(root+'/'):
-        if not dirnames:
-            select_flag = False
-            for selected_d in select_data:
-                if selected_d in dirpath:
-                    select_flag = True
-                    break
-
-            if select_flag:
-                dataset = OCRDataset(dirpath, opt)
-                sub_dataset_log = f'sub-directory:\t/{os.path.relpath(dirpath, root)}\t num samples: {len(dataset)}'
-                print(sub_dataset_log)
-                dataset_log += f'{sub_dataset_log}\n'
-                dataset_list.append(dataset)
+    for selected_d in select_data:
+       if os.path.exists(root+'/'+selected_d) :
+            dataset = OCRDataset(root+'/'+selected_d, opt)
+            dirpath = root+'/'+selected_d
+            sub_dataset_log = f'sub-directory:\t/{os.path.relpath(dirpath, root)}\t num samples: {len(dataset)}'
+            print(sub_dataset_log)
+            dataset_log += f'{sub_dataset_log}\n'
+            dataset_list.append(dataset)
 
     concatenated_dataset = ConcatDataset(dataset_list)
 
@@ -146,7 +140,7 @@ class OCRDataset(Dataset):
         self.root = root
         self.opt = opt
         print(root)
-        self.df = pd.read_csv(os.path.join(root,'labels.csv'), sep='^([^,]+),', engine='python', usecols=['filename', 'words'], keep_default_na=False)
+        self.df = pd.read_csv(os.path.join(root,'labels.txt'), engine='python', usecols=['filename', 'words'],delimiter='\t' ,keep_default_na=False)
         self.nSamples = len(self.df)
 
         if self.opt.data_filtering_off:
@@ -172,7 +166,8 @@ class OCRDataset(Dataset):
     def __getitem__(self, index):
         index = self.filtered_index_list[index]
         img_fname = self.df.at[index,'filename']
-        img_fpath = os.path.join(self.root, img_fname)
+        #img_fpath = os.path.join(self.root, img_fname)
+        img_fpath =  img_fname
         label = self.df.at[index,'words']
 
         if self.opt.rgb:

@@ -1,5 +1,5 @@
 torch
-torchvision>=0.5
+torchvision
 opencv-python-headless
 scipy
 numpy

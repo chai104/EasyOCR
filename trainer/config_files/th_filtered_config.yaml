@@ -1,15 +1,15 @@
 number: '0123456789'
 symbol: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ €"
-lang_char: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-experiment_name: 'en_filtered'
+lang_char: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZกขคฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฤเแโใไะาุูิีืึั่้๊๋็์ำํฺฯๆ๑๒๓๔๕๖๗๘๙ฦ'
+experiment_name: 'th_filtered'
 train_data: 'all_data'
-valid_data: 'all_data/en_val'
+valid_data: 'all_data/th_val'
 manualSeed: 1111
 workers: 10
 batch_size: 32 #32
-num_iter: 300000
-valInterval: 20000
-saved_model: '' #'saved_models/en_filtered/iter_300000.pth'
+num_iter: 10000
+valInterval: 4
+saved_model: '' #'saved_models/th_filtered/thai_original.pth'
 FT: False
 optim: False # default is Adadelta
 lr: 1.
@@ -18,7 +18,7 @@ rho: 0.95
 eps: 0.00000001
 grad_clip: 5
 #Data processing
-select_data: 'en_train_filtered' # this is dataset folder in train_data
+select_data: 'th_train_filtered' # this is dataset folder in train_data
 batch_ratio: '1' 
 total_data_usage_ratio: 1.0
 batch_max_length: 34 
@@ -37,8 +37,8 @@ SequenceModeling: 'BiLSTM'
 Prediction: 'CTC'
 num_fiducial: 20
 input_channel: 1
-output_channel: 256
-hidden_size: 256
+output_channel: 512
+hidden_size: 512
 decode: 'greedy'
 new_prediction: False
 freeze_FeatureFxtraction: False
